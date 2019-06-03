@@ -76,7 +76,7 @@ html, body, .app {
   top: 7%;
   bottom: 7%;
   margin: 0 auto;
-  overflow: auto;
+  overflow-y: scroll;
   -ms-overflow-style: none; 
   text-align: center;
 }
@@ -157,6 +157,17 @@ html, body, .app {
   margin-top: 12px;
   margin-bottom: 12px;
 }
+.content > div#size > div > button {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  margin-right: 14px;
+  width: 86px;
+  height: 48px;
+  border-radius: 29px;
+  border: solid 3px black;
+  font-size: 16px;
+  background-color: #ffffff;
+}
 .content > div > div > button {
   margin-top: 16px;
   margin-bottom: 16px;
@@ -168,11 +179,39 @@ html, body, .app {
   font-size: 16px;
   background-color: #ffffff;
 }
-.content > div > div > button.checked {
+.content > div#gender > div > button.checked {
   background-color: fuchsia;
   color: white;
 }
+.content > div > div > button.checked {
+  background-color: black;
+  color: white;
+}
+.content > div#size > div > button.checked {
+  background-color: black;
+  color: white;
+}
+.content > div#portfolio > div > input {
+  width: 70%;
+}
+.content > div#portfolio > div > label {
+  width: 86px;
+  height: 48px;
+  margin-left: 12px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  margin-right: 14px;
+  padding: 8px;
+  width: 118px;
+  height: 48px;
+  border-radius: 29px;
+  border: solid 3px black;
+  font-size: 16px;
+  background-color: #ffffff;
+}
+
 .content > div > div > input {
+  /* "calc(100% - 24px)" */
   width: 100%;
   height: 48px;
   margin-top: 16px;

@@ -57,7 +57,7 @@ html, body, .app {
   width: 100%;
   height: 100vh;
 }
-.popup {
+.alert {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -68,27 +68,78 @@ html, body, .app {
   margin: auto;
   background-color: rgba(0,0,0, 0.7);
 }
-.popup_inner {
+.alert_inner {
   background-color: #ffffff;
-  position: absolute;
-  left: 33%;
-  right: 33%;
-  top: 33%;
-  bottom: 33%;
+  position: fixed;
+  left: 33vw;
+  right: 33vw;
+  top: 25vh;
+  bottom: 25vh;
   margin: 0 auto;
-  overflow-y: scroll;
-  -ms-overflow-style: none; 
+  overflow: hidden;
   text-align: center;
 }
-.popup.show {
+.alert.show {
   display: flex;
 }
-.popup.show > div {
+.alert.show > div {
   animation: bounceInDown 0.5s;
 }
-.popup.none {
+.alert.none {
   display: flex;
 }
-.popup.none > div {
+.alert.none > div {
   animation: bounceOutUp 0.5s;
 }
+.alert_inner > button {
+    /*border: 3px solid fuchsia;*/
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 24px;
+    left:50%;
+    transform: translate(-50%,0%);
+    border: 0px;
+    border-radius: 8px;
+    color: white;
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    
+    min-width: 182px;
+    min-height: 52px;
+    background: #1c1c28;
+    box-shadow: 
+      0 0 0 3px #10b7c9,
+      0 0 0 6px fuchsia;
+  }
+  .alert_inner > .title {
+    width: 100%;
+    height: 96px;
+    text-align: left;
+    display:flex;
+    align-items:center;
+  }
+  .alert_inner > .title > h1 {
+    position: absolute;
+    left: 84px;
+  }
+  .alert_inner > .title > button {
+    background: none;
+    border: 0px;
+    position: absolute;
+    right: 24px;
+    
+  }
+  .alert_inner > .title > img {
+    vertical-align: middle;
+    position: absolute;
+    left: 24px;
+  }
+
+  .alert_inner > .content {
+      padding-left: 30px;
+      padding-right: 30px;
+  }

@@ -1,5 +1,6 @@
 import React from 'react';
 import * as styles from './App.css';
+import Alert from './Alert';
 // import * as styles from "./Popup.less";
 import * as classNames from 'classnames/bind';
 
@@ -12,7 +13,9 @@ const cx = classNames.bind(styles);
 export default class Popup extends React.Component {
   constructor() {
     super();
+
     this.state = {
+      showAlert: false,
       name: "",
       gender: "",
       phone: "",
@@ -20,6 +23,7 @@ export default class Popup extends React.Component {
       team: "",
       role: "",
       type: "",
+      email: "",
       project: "",
       portpolio: null,
       size: "",
@@ -27,9 +31,17 @@ export default class Popup extends React.Component {
       redirect: "",
       loading: false,
     };
+    this.onChangeTeam = this.onChangeTeam.bind(this);
+    this.onChangeName = this.onChangeName.bind(this);
+    this.onChangesID = this.onChangesID.bind(this);
+    this.onChangePhone = this.onChangePhone.bind(this);
+    this.onChangeEmail = this.onChangeEmail.bind(this);
+    this.onChangePortfolio = this.onChangePortfolio.bind(this);
+
     this.onChangeGender = this.onChangeGender.bind(this);
     this.onChangeRole = this.onChangeRole.bind(this);
     this.onChangeSize = this.onChangeSize.bind(this);
+    this.submitt = this.submitt.bind(this);
   }
 
   render() {
@@ -47,13 +59,13 @@ export default class Popup extends React.Component {
             <div>
               <span>팀명</span>
               <div>
-                <input type="text" placeholder="팀명을 입력해주세요." />
+                <input type="text" placeholder="팀명을 입력해주세요." onChange={this.onChangeTeam} />
               </div>
             </div>
             <div>
               <span>이름</span>
               <div>
-                <input type="text" placeholder="이름을 입력해주세요." />
+                <input type="text" placeholder="이름을 입력해주세요." onChange={this.onChangeName} />
               </div>
             </div>
             <div id="gender">
@@ -67,19 +79,19 @@ export default class Popup extends React.Component {
             <div>
               <span>학번</span>
               <div>
-                <input type="text" placeholder="학번을 입력해주세요."  />
+                <input type="text" placeholder="학번을 입력해주세요." onChange={this.onChangesID} />
               </div>
             </div>
             <div>
               <span>전화번호</span>
               <div>
-                <input type="text" placeholder="전화번호를 입력해주세요." />
+                <input type="text" placeholder="전화번호를 입력해주세요." onChange={this.onChangePhone} />
               </div>
             </div>
             <div>
               <span>이메일</span>
               <div>
-                <input type="text" placeholder="이메일을 입력해주세요."  />
+                <input type="text" placeholder="이메일을 입력해주세요." onChange={this.onChangeEmail}  />
               </div>
             </div>
             <div>
@@ -94,8 +106,9 @@ export default class Popup extends React.Component {
             <div id="portfolio">
               <span>포트폴리오</span>
               <div>
-                <input type="file" id="fileInput" placeholder="file:///Users/sunrin/Desktop/Portfolio.zip"  />
+                <input type="file" id="fileInput" placeholder="file:///Users/sunrin/Desktop/Portfolio.zip" onChange={this.onChangePortfolio}  />
                 <label htmlFor="fileInput">첨부</label>
+                
               </div>
             </div>
             <div id ="size">
@@ -111,20 +124,78 @@ export default class Popup extends React.Component {
             </div>
           </div>
 
-          <button onClick={this.props.closePopup}>{this.props.buttonName}</button>
+          <button onClick={this.submitt}>{this.props.buttonName}</button>
+          {this.state.showAlert ?
+            <Alert
+              title='제출 완료'
+              closePopup={this.close.bind(this)}
+              show={this.state.showAlert}
+              name={this.state.name}
+              gender= {this.state.gender}
+              phone= {this.state.phone}
+              team= {this.state.team}
+              role= {this.state.role}
+              type= {this.state.type}
+              project= {this.state.project}
+              email= {this.state.email}
+              portpolio= {this.state.portpolio}
+              size= {this.state.size}
+              buttonName='확인'
+            />
+            : null
+          }
         </div>
       </div>
     );
   }
 
-  onChangeRole(e) {
-    this.setState({ role: e.currentTarget.innerHTML })
+  close() {
+    //this.props.closePopup()
+    
+  }
+  
+  onChangeTeam(e) {
+    this.setState({ team: e.currentTarget.value })
+  }
+  onChangeName(e) {
+    this.setState({ name: e.currentTarget.value })
   }
   onChangeGender(e) {
     this.setState({ gender: e.currentTarget.innerHTML })
   }
+
+  onChangesID(e) {
+    this.setState({ sID: e.currentTarget.value })
+  }
+  onChangePhone(e) {
+    this.setState({ phone: e.currentTarget.value })
+  }
+  onChangeEmail(e) {
+    this.setState({ email: e.currentTarget.value })
+  }
+  onChangePortfolio(e) {
+    const file = e.currentTarget.files[0];
+
+    if (file != null) {
+      if (file.size > 20971520) {
+        alert('20MB초과')
+      } else {
+        this.setState({ portpolio: e.currentTarget.files[0] });
+      }
+    }
+  }
+  onChangeRole(e) {
+    this.setState({ role: e.currentTarget.innerHTML })
+  }
   onChangeSize(e) {
     this.setState({ size: e.currentTarget.innerHTML })
+  }
+
+
+  submitt() {
+    this.setState({
+      showAlert: !this.state.showAlert
+    })
   }
 }
 

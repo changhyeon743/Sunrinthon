@@ -15,6 +15,7 @@ export default class App extends React.Component {
     this.state = {
       showPopup: false,
       showAlert: false
+
     };
   }
   togglePopup() {
@@ -39,6 +40,7 @@ export default class App extends React.Component {
           <Popup
             text='신청서 작성'
             closePopup={this.togglePopup.bind(this)}
+            submit={this.togglePopup.bind(this)}
             show={this.state.showPopup}
             buttonName='제출'
           />
@@ -46,10 +48,7 @@ export default class App extends React.Component {
         }
         {this.state.showAlert ?
           <Alert
-            title='탈락했습니다ㅜㅜ'
-            content='죄송합니다.<br/>
-            포트폴리오 심사에서 떨어지셨습니다.<br/>
-            신청해주셔서 감사합니다.'
+            title='제출 완료'
             closePopup={this.toggleAlert.bind(this)}
             show={this.state.showAlert}
             buttonName='확인'
